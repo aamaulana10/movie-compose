@@ -31,4 +31,65 @@ class HomeRemoteDataSource(private val service: HomeService) {
 
         }.flowOn(Dispatchers.IO)
     }
+
+    fun getUpcomingMovies(): Flow<ApiResponse<List<MovieVideosModel>>> {
+        println("call this functionnnn")
+        return flow {
+
+            try {
+
+                val response = service.getUpcomingMovies()
+                println("response $response")
+                val dataArray = response.results
+                println("result ${response.results}")
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response.results))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                println("RemoteDataSource, $e")
+                emit(ApiResponse.Error(e.toString()))
+            }
+
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun getNowPlayingMovies(): Flow<ApiResponse<List<MovieVideosModel>>> {
+        println("call this functionnnn")
+        return flow {
+
+            try {
+
+                val response = service.getNowPlayingMovies()
+                println("response $response")
+                val dataArray = response.results
+                println("result ${response.results}")
+                if (dataArray.isNotEmpty()) {
+                    emit(ApiResponse.Success(response.results))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                println("RemoteDataSource, $e")
+                emit(ApiResponse.Error(e.toString()))
+            }
+
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun getMovieDetail(movieId: String): Flow<ApiResponse<MovieVideosModel>> {
+        return flow {
+            try {
+                val response = service.getMovieDetail(movieId)
+                println("response detaillllll $response")
+                emit(ApiResponse.Success(response))
+            } catch (e: Exception) {
+                println("RemoteDataSource, $e")
+                emit(ApiResponse.Error(e.toString()))
+            }
+
+        }.flowOn(Dispatchers.IO)
+    }
+
 }
