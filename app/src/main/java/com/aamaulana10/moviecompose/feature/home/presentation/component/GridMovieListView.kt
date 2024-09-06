@@ -3,6 +3,7 @@ package com.aamaulana10.moviecompose.feature.home.presentation.component
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -21,11 +22,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.aamaulana10.moviecompose.feature.home.core.domain.model.MovieVideosModel
 
 @Composable
-fun GridMovieListView(sectionTitle: String, movies: List<MovieVideosModel>) {
+fun GridMovieListView(
+    sectionTitle: String,
+    movies: List<MovieVideosModel>,
+    navHostController: NavHostController
+) {
     Column(
         Modifier
             .padding(vertical = 16.dp)
@@ -60,6 +66,9 @@ fun GridMovieListView(sectionTitle: String, movies: List<MovieVideosModel>) {
                             modifier = Modifier
                                 .padding(all = 4.dp)
                                 .clip(RoundedCornerShape(8.dp))
+                                .clickable {
+                                    navHostController.navigate("movie_detail/${movie.id}")
+                                }
                         )
                     }
                 }

@@ -9,16 +9,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.aamaulana10.moviecompose.feature.home.presentation.component.GridMovieListView
-import com.aamaulana10.moviecompose.feature.home.presentation.component.SearchBarView
-import com.aamaulana10.moviecompose.feature.home.presentation.viewmodel.SearchViewModel
+import com.aamaulana10.moviecompose.feature.search.presentation.component.SearchBarView
+import com.aamaulana10.moviecompose.feature.search.presentation.viewmodel.SearchViewModel
 
 @Composable
 fun SearchScreen(navHostController: NavHostController) {
@@ -34,11 +36,15 @@ fun SearchScreen(navHostController: NavHostController) {
             modifier = Modifier
                 .padding(innerPadding)
         ) {
-            SearchBarView(navHostController = navHostController)
+            SearchBarView(viewModel)
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            GridMovieListView(sectionTitle = "Result", movies = emptyList())
+            GridMovieListView(
+                sectionTitle = "Result",
+                movies = viewModel.movies.observeAsState(initial = emptyList()).value.toMutableStateList(),
+                navHostController
+            )
         }
     }
 }

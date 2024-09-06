@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 @Composable
-fun SearchBarView(navHostController: NavHostController) {
+fun HomeSearchBarView(navHostController: NavHostController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,6 +45,7 @@ fun SearchBarView(navHostController: NavHostController) {
             leadingIcon = {
                 Icon(Icons.Default.Search, contentDescription = null)
             }
+
         )
     }
 }

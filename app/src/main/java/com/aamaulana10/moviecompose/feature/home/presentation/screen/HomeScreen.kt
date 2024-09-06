@@ -21,8 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.aamaulana10.moviecompose.feature.home.presentation.component.GridMovieListView
+import com.aamaulana10.moviecompose.feature.home.presentation.component.HomeSearchBarView
 import com.aamaulana10.moviecompose.feature.home.presentation.component.HorizontalMovieListView
-import com.aamaulana10.moviecompose.feature.home.presentation.component.SearchBarView
 import com.aamaulana10.moviecompose.feature.home.presentation.viewmodel.HomeViewModel
 
 @Composable
@@ -43,7 +43,7 @@ fun HomeScreen(navHostController: NavHostController) {
                     fontWeight = FontWeight.ExtraBold
                 )
             )
-            SearchBarView(navHostController)
+            HomeSearchBarView(navHostController)
             CategoryListView(viewModel)
             if (viewModel.selectedCategory == "All") {
                 HorizontalMovieListView(
@@ -64,7 +64,8 @@ fun HomeScreen(navHostController: NavHostController) {
             } else {
                 GridMovieListView(
                     viewModel.selectedCategory,
-                    viewModel.movies.observeAsState(initial = emptyList()).value.toMutableStateList()
+                    viewModel.movies.observeAsState(initial = emptyList()).value.toMutableStateList(),
+                    navHostController
                 )
             }
         }
