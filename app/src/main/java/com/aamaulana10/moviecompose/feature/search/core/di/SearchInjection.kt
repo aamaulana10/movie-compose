@@ -1,9 +1,9 @@
 package com.aamaulana10.moviecompose.feature.search.core.di
 
-import com.aamaulana10.moviecompose.feature.search.core.data.remote.ISearchRepository
+import com.aamaulana10.moviecompose.feature.search.core.data.ISearchRepository
+import com.aamaulana10.moviecompose.feature.search.core.data.SearchRepository
 import com.aamaulana10.moviecompose.feature.search.core.data.remote.SearchApiConfig
 import com.aamaulana10.moviecompose.feature.search.core.data.remote.SearchRemoteDataSource
-import com.aamaulana10.moviecompose.feature.search.core.data.remote.SearchRepository
 import com.aamaulana10.moviecompose.feature.search.core.domain.usecase.SearchUseCase
 
 class SearchInjection {

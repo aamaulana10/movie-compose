@@ -5,7 +5,6 @@ import com.aamaulana10.moviecompose.feature.home.core.data.IHomeRepository
 import com.aamaulana10.moviecompose.feature.home.core.data.remote.HomeApiConfig
 import com.aamaulana10.moviecompose.feature.home.core.data.remote.HomeRemoteDataSource
 import com.aamaulana10.moviecompose.feature.home.core.domain.usecase.HomeUseCase
-import com.aamaulana10.moviecompose.feature.home.core.domain.usecase.IHomeUseCase
 
 class HomeInjection {
 

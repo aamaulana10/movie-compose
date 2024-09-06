@@ -4,9 +4,9 @@ import com.aamaulana10.moviecompose.utils.RetrofitHelper
 
 object HomeApiConfig {
 
-        private const val baseUrl = "https://api.themoviedb.org/"
+    private const val BASE_URL = "https://api.themoviedb.org/"
 
-        fun provideApiService(): HomeService {
-            return RetrofitHelper.createService(baseUrl).create(HomeService::class.java)
-        }
+    fun provideApiService(): HomeService {
+        return RetrofitHelper.createService(BASE_URL).create(HomeService::class.java)
+    }
 }
